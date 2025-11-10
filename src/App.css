@@ -1,42 +1,60 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* ===== Modal Overlay ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(2,6,12,.55);
+  backdrop-filter: blur(6px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+  padding:20px;
+  animation: fadeIn .18s ease-out;
+  box-sizing:border-box;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* ===== Modal Card (wider, balanced padding, no overflow) ===== */
+.modal-content{
+  width:min(640px, 94vw);          /* increased from 560px */
+  background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)), var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:28px 26px;               /* more breathing room inside */
+  text-align:left;
+  box-sizing:border-box;
+  overflow:hidden;                 /* ensures no horizontal bleed */
+  animation: pop .18s ease-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.modal-content h2{
+  margin:0 0 18px 0;
+  font-size:1.45rem;
+  font-weight:650;
+  color:var(--text);
 }
 
-.card {
-  padding: 2em;
+/* ===== Form ===== */
+form{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap:16px;
+  box-sizing:border-box;
 }
 
-.read-the-docs {
-  color: #888;
+/* Inputs spacing and safety from edges */
+input[type="text"],
+input[type="date"]{
+  width:100%;
+  box-sizing:border-box;           /* fix overflow inside modal */
+  margin:0;
+  background:#0f1622;
+  color:var(--text);
+  border:1.6px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;               /* slightly wider padding for comfort */
+  font-size:1rem;
+  outline:none;
+  transition:border-color .22s ease, box-shadow .22s ease, background .22s ease, transform .08s ease;
+  box-shadow:inset 0 0 8px rgba(255,255,255,.03);
 }
